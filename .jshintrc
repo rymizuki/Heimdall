@@ -1,0 +1,24 @@
+{
+  "strict" : true,
+    "bitwise": true,
+    "curly": true,
+    "newcap": true,
+    "noarg": true,
+    "trailing": true,
+    "multistr": true,
+    "supernew" : true,
+
+
+    "undef": true,
+    "browser": true,
+    "devel": true,
+    "debug": true,
+
+    "jquery": true,
+    "node": true,
+
+    "globals": {
+      "_": true,
+      "Backbone":true
+    }
+}

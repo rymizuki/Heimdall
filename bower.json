@@ -1,0 +1,23 @@
+{
+  "name": "Heimdal",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rymizuki/jquery-Heimdall",
+  "authors": [
+    "mizuki_r <ry.mizuki@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.0.3",
+    "underscore": "~1.5.2",
+    "backbone": "~1.1.0",
+    "sinon": "~1.7.3",
+    "expect": "~0.2.0"
+  }
+}
