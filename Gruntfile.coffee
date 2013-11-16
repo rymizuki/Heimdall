@@ -38,7 +38,7 @@ module.exports = (grunt) ->
           framework: "mocha"
           test_page: "test/runner.mustache"
           parallel: 4
-          launch_in_ci: ["PhantomJS", "Chrome", "Chrome Canary", "safari", "firefox"]
+          launch_in_ci: ["PhantomJS"]
         src: [
           "bower_components/expect/expect.js"
           "bower_components/sinon/index.js"
@@ -53,7 +53,7 @@ module.exports = (grunt) ->
           framework: "mocha"
           test_page: "test/runner.mustache"
           parallel: 4
-          launch_in_ci: ["PhantomJS", "Chrome", "Chrome Canary", "safari", "firefox"]
+          launch_in_ci: ["PhantomJS"]
         src: [
           "bower_components/expect/expect.js"
           "bower_components/sinon/index.js"
