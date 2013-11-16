@@ -34,6 +34,11 @@ module.exports = (grunt) ->
 
     testem:
       jquery:
+        options:
+          framework: "mocha"
+          test_page: "test/runner.mustache"
+          parallel: 4
+          launch_in_ci: ["PhantomJS", "Chrome", "Chrome Canary", "safari", "firefox"]
         src: [
           "bower_components/expect/expect.js"
           "bower_components/sinon/index.js"
@@ -44,6 +49,11 @@ module.exports = (grunt) ->
           "test/validator.js"
         ]
       zepto:
+        options:
+          framework: "mocha"
+          test_page: "test/runner.mustache"
+          parallel: 4
+          launch_in_ci: ["PhantomJS", "Chrome", "Chrome Canary", "safari", "firefox"]
         src: [
           "bower_components/expect/expect.js"
           "bower_components/sinon/index.js"
@@ -53,11 +63,6 @@ module.exports = (grunt) ->
           "test/result.js"
           "test/validator.js"
         ]
-      options:
-        framework: "mocha"
-        test_page: "test/runner.mustache"
-        parallel: 4
-        launch_in_ci: ["PhantomJS"]
 
   grunt.registerTask 'main', ["concat:main", "jshint", "uglify:main"]
   grunt.registerTask 'test', ["testem"]
