@@ -12,8 +12,8 @@ module.exports = (grunt) ->
         dest: "dist/jquery.heimdall.js"
         src: [
           "js/heimdall.js"
-          "js/result.js"
-          "js/constraint/default.js"
+          "js/heimdall-result.js"
+          "js/constraints/DEFAULTS.js"
         ]
       vender:
         dest: "test/vender.js"
@@ -33,16 +33,28 @@ module.exports = (grunt) ->
           "dist/jquery.heimdall.min.js": [ "<%= concat.main.dest %>" ]
 
     testem:
-      main:
+      jquery:
         src: [
           "bower_components/expect/expect.js"
           "bower_components/sinon/index.js"
+          "bower_components/jquery/jquery.js"
+          "<%= concat.main.dest %>"
+          "test/constraint.js"
+          "test/result.js"
+          "test/validator.js"
+        ]
+      zepto:
+        src: [
+          "bower_components/expect/expect.js"
+          "bower_components/sinon/index.js"
+          "bower_components/zepto/zepto.js"
           "<%= concat.main.dest %>"
           "test/constraint.js"
           "test/result.js"
           "test/validator.js"
         ]
       options:
+        framework: "mocha"
         test_page: "test/runner.mustache"
         parallel: 4
         launch_in_ci: ["PhantomJS"]

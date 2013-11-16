@@ -15,10 +15,7 @@
     "debug": true,
 
     "jquery": true,
-    "node": true,
 
     "globals": {
-      "_": true,
-      "Backbone":true
     }
 }
