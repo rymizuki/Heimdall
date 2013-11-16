@@ -3,7 +3,7 @@ var Heimdall = (function () {
 
     var toString = Object.prototype.toString;
 
-    var Constructor = function (rules, $el) {
+    var Constructor = function (rules) {
         if (!rules || typeof rules !== 'object') {
           throw new TypeError('rules are invalid object');
         }
@@ -11,7 +11,6 @@ var Heimdall = (function () {
         this.rules       = rules;
         this.columns     = [];
         this.constraints = null;
-        this.$el = $el ? $el : null;
 
         for (var column in this.rules) {
             this.columns.push(column);
@@ -24,14 +23,6 @@ var Heimdall = (function () {
         if (!this.constraints) {
             // XXX: not loaded constraints, loaded default constraints.
             this.load_constraints(Heimdall.CONSTRAINTS.DEFAULTS);
-        }
-
-        if (!data && this.$el) { // $el.heimdall.validate() called
-            data = {};
-            this.$el.each(function () {
-                var $this = $(this).find('[name]:input');
-                data[$this.attr('name')] = $this.val();
-            });
         }
 
         var ret = this.create_result();
@@ -50,10 +41,6 @@ var Heimdall = (function () {
                 }
             });
         });
-
-        if (this.$el) {
-            this.$el.trigger('heimdall:' + (ret.has_error() ? 'invalid' : 'valid'), [ret]);
-        }
 
         return ret;
     };
