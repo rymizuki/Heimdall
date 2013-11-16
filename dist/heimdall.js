@@ -3,7 +3,7 @@ var Heimdall = (function () {
 
     var toString = Object.prototype.toString;
 
-    var Constructor = function (rules) {
+    var Constructor = function (rules, $el) {
         if (!rules || typeof rules !== 'object') {
           throw new TypeError('rules are invalid object');
         }
@@ -11,6 +11,7 @@ var Heimdall = (function () {
         this.rules       = rules;
         this.columns     = [];
         this.constraints = null;
+        this.$el = $el ? $el : null;
 
         for (var column in this.rules) {
             this.columns.push(column);
@@ -23,6 +24,14 @@ var Heimdall = (function () {
         if (!this.constraints) {
             // XXX: not loaded constraints, loaded default constraints.
             this.load_constraints(Heimdall.CONSTRAINTS.DEFAULTS);
+        }
+
+        if (!data && this.$el) { // $el.heimdall.validate() called
+            data = {};
+            this.$el.each(function () {
+                var $this = $(this).find('[name]');
+                data[$this.attr('name')] = $this.val();
+            });
         }
 
         var ret = this.create_result();
@@ -41,6 +50,10 @@ var Heimdall = (function () {
                 }
             });
         });
+
+        if (this.$el) {
+            this.$el.trigger('heimdall:' + (ret.has_error() ? 'invalid' : 'valid'), [ret]);
+        }
 
         return ret;
     };
@@ -143,7 +156,25 @@ Heimdall.Result = (function () {
 (function () {
     'use strict';
 
+    // its a simple shorthand
     $.heimdall = function (rules) {
         return new Heimdall(rules);
+    };
+
+    // its a validate shorthand
+    $.fn.heimdall = function (rules) {
+        var $this    = this,
+            heimdall = $this.data('heimdall');
+
+        if ($this.length !== 1) {
+            // not assumed case
+            return this;
+        }
+
+        if (!heimdall) {
+            $this.data('heimdall', (heimdall = new Heimdall(rules, $this)));
+        }
+
+        return heimdall;
     };
 })();

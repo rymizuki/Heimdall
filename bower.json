@@ -15,7 +15,7 @@
   ],
   "devDependencies": {
     "jquery": "~2.0.3",
-    "sinon": "~1.7.3",
+    "sinon": "http://sinonjs.org/releases/sinon-1.7.3.js",
     "expect": "~0.2.0",
     "zepto": "~1.0.0"
   }

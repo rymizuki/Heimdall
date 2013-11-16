@@ -54,7 +54,7 @@ $('#btn-submit').on('click', function () {
     $form.heimdall({
         "name": ["required", ["length", [1, 32]]],
         "age"     : ["required", "int"],
-    });
+    }).validate();
 });
 ```
 

@@ -104,21 +104,76 @@ describe('validator.validate', function () {
     });
 });
 describe('use $ prefix', function () {
-    describe('has heimdal method', function () {
-        it('ok', function () {
-            expect($.heimdall).to.be.a('function');
+    describe('use $.heimdall case', function () {
+        describe('has heimdal method', function () {
+            it('ok', function () {
+                expect($.heimdall).to.be.a('function');
+            });
+        });
+        describe('create instance', function () {
+            var validator = $.heimdall({
+                "name": ["required"],
+            });
+            it('of Heimdal object', function () {
+                expect(validator).to.be.an(Heimdall);
+            });
+            it('has rules', function () {
+                expect(validator.rules).to.be.eql({
+                    "name": ["required"]
+                });
+            });
         });
     });
-    descibe('create instance', function () {
-        var validator = $.heimdal({
-            "name": ["required"],
+    describe('$(elem).heimdall case', function () {
+//        var $form = $("#form-valid");
+        describe('has heimdall method', function () {
+            var $form = $('<form/>').append('<input name="name"/>')
+
+            it('ok', function () {
+                expect($form.heimdall).to.be.a('function');
+            });
         });
-        it('of Heimdal object', function () {
-            expect(validator).to.be.an('Heimdall');
+        describe('call heimdall method', function () {
+            var $form = $('<form/>').append('<input name="name"/>')
+            var heimdall = $form.heimdall({"name": ["required"]});
+
+            it('returned heimdal instance', function () {
+                expect(heimdall).to.be.an(Heimdall);
+            });
+            it('registered rules proprety', function () {
+                expect(heimdall.rules).to.be.eql({
+                    "name": ["required"]
+                });
+            });
+            it('registered $el proprety', function () {
+                expect(heimdall.$el).to.be.a('object');
+            });
+            it('registered validate method', function () {
+                expect(heimdall.validate).to.be.a('function');
+            });
         });
-        it('has rules', function () {
-            expect(validator.rules).to.be.eql({
-                "name": ["required"]
+        describe('call validate method', function () {
+            describe('invalid form data case is', function () {
+                it("fired 'heimdal:invalid' event", function () {
+                    var $form = $('<form />')
+                        .append('<input name="name"/>');
+                    var spy = sinon.spy($form, 'trigger');
+                    $form.heimdall({"name": ["required"]}).validate(); 
+
+                    var call = spy.getCall(0);
+                    expect(call.args[0]).to.be.eql('heimdall:invalid');
+                });
+            });
+            describe('valid form data case is', function () {
+                it("fired 'heimdal:valid' event", function () {
+                    var $form = $('<form />')
+                        .append('<input name="name" value="tarou"/>');
+                    var spy = sinon.spy($form, 'trigger');
+                    $form.heimdall({"name": ["required"]}).validate(); 
+
+                    var call = spy.getCall(0);
+                    expect(call.args[0]).to.be.eql('heimdall:valid');
+                });
             });
         });
     });
