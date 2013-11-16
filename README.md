@@ -47,8 +47,8 @@ use DOM object.
 
 ```javascript
 var $form = $('#form')
-    .on('invalid', invalid_case_func)
-    .on('success', success_case_func);
+    .on('heimdall:invalid', invalid_case_func)
+    .on('heimdall:vaild', success_case_func);
 
 $('#btn-submit').on('click', function () {
     $form.heimdall({
