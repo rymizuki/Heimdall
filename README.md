@@ -47,13 +47,13 @@ use DOM object.
 
 ```javascript
 var $form = $('#form')
-    .on('invalid', invalid_case_func)
-    .on('success', success_case_func);
+    .on('heimdall:invalid', invalid_case_func)
+    .on('heimdall:vaild', success_case_func);
 
 $('#btn-submit').on('click', function () {
-    $form.heimdall({
+    $form.heimdall().validate({
         "name": ["required", ["length", [1, 32]]],
-        "age"     : ["required", "int"],
+        "age" : ["required", "int"],
     });
 });
 ```
