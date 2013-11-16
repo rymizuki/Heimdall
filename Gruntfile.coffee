@@ -9,7 +9,7 @@ module.exports = (grunt) ->
 
     concat:
       main:
-        dest: "dist/jquery.heimdall.js"
+        dest: "dist/heimdall.js"
         src: [
           "js/heimdall.js"
           "js/heimdall-result.js"
@@ -30,7 +30,7 @@ module.exports = (grunt) ->
     uglify:
       main:
         files:
-          "dist/jquery.heimdall.min.js": [ "<%= concat.main.dest %>" ]
+          "dist/heimdall.min.js": [ "<%= concat.main.dest %>" ]
 
     testem:
       jquery:
