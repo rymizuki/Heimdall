@@ -14,6 +14,7 @@ module.exports = (grunt) ->
           "js/heimdall.js"
           "js/heimdall-result.js"
           "js/constraints/DEFAULTS.js"
+          "js/heimdall-shorthand.js"
         ]
       vender:
         dest: "test/vender.js"

@@ -103,3 +103,23 @@ describe('validator.validate', function () {
         });
     });
 });
+describe('use $ prefix', function () {
+    describe('has heimdal method', function () {
+        it('ok', function () {
+            expect($.heimdall).to.be.a('function');
+        });
+    });
+    descibe('create instance', function () {
+        var validator = $.heimdal({
+            "name": ["required"],
+        });
+        it('of Heimdal object', function () {
+            expect(validator).to.be.an('Heimdall');
+        });
+        it('has rules', function () {
+            expect(validator.rules).to.be.eql({
+                "name": ["required"]
+            });
+        });
+    });
+});
