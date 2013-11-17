@@ -45,5 +45,21 @@ describe('Heimdall.CONSTRAINTS', function () {
                 expect(select('d', ['a', 'b', 'c'])).to.be.eql(false);
             });
         });
+        describe('int', function () {
+            var int = Heimdall.CONSTRAINTS.DEFAULTS.int;
+
+            it('1 is true', function () {
+                expect(int(1)).to.be.ok();
+            });
+            it('a is false', function () {
+                expect(int('a')).to.not.be.ok();
+            });
+            it('"1" is true', function () {
+                expect(int('1')).to.be.ok();
+            });
+            it('0.1 is true', function () {
+                expect(int(0.1)).to.be.ok();
+            });
+        });
     });
 });

@@ -18,5 +18,8 @@
         }
         return false;
     },
+    "int": function (value) {
+        return isFinite(value) ? true : false;
+    },
   };
 })();
