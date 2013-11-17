@@ -1,12 +1,12 @@
 # Heimdall
 
-Heimdall is a form validation module for jquery.
+Heimdall is a form validation module for jquery or zepto.
 
 # SYNOPSIS
 
 ## load scripts
 
-Heimdall depends on jquery. Read after the jquery.
+Heimdall depends on jquery. Read after the jquery or zepto.
 
 ```html
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
