@@ -1,6 +1,6 @@
 {
   "name": "Heimdal",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "grunt-cli": "~0.1.11",
