@@ -1,4 +1,4 @@
-/*! Heimdall - v0.0.1 - 2013-12-10
+/*! Heimdall - v0.0.2 - 2013-12-10
 * https://github.com/mizuki/Heimdall
 * Copyright (c) 2013 mizuki_r; Licensed MIT */
 var Heimdall = (function () {
