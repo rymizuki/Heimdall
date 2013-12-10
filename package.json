@@ -1,7 +1,12 @@
 {
   "name": "Heimdall",
   "version": "0.0.1",
-  "private": true,
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt testem"
+  },
   "dependencies": {
     "grunt-cli": "~0.1.11",
     "grunt": "~0.4.1"
