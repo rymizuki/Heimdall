@@ -44,7 +44,7 @@ describe('validator.load_constraints', function () {
     describe('can override', function () {
         var validator = new Heimdall({});
         validator.load_constraints({"mock": "aaaa"});
-        validator.load_constraints({"mock": "bbbb"})
+        validator.load_constraints({"mock": "bbbb"});
 
         it('can do', function () {
             expect(validator.constraints).to.be.eql({
@@ -64,42 +64,44 @@ describe('validator.create_result', function () {
 });
 
 describe('validator.validate', function () {
-    describe('is valid data if retuned result object.', function () {
-        var validator = new Heimdall({
-            "name": ["required"],
+    describe('validating object', function () {
+        describe('is valid data if retuned result object.', function () {
+            var validator = new Heimdall({
+                "name": ["required"],
+            });
+
+            var result = validator.validate({"name": "tarou"});
+
+            it('result is a object of Heimdall.Result', function () {
+                expect(result).to.be.an(Heimdall.Result);
+            });
+            it('result has not error', function () {
+                expect(result.has_error()).to.not.be.ok();
+            });
+            it('result.get_errors returns null', function () {
+                expect(result.get_errors()).to.be.eql(null);
+            });
         });
 
-        var result = validator.validate({"name": "tarou"});
+        describe('is not valid data', function () {
+            var validator = new Heimdall({
+                "name": ["required"],
+            });
 
-        it('result is a object of Heimdall.Result', function () {
-            expect(result).to.be.an(Heimdall.Result);
-        });
-        it('result has not error', function () {
-            expect(result.has_error()).to.not.be.ok();
-        });
-        it('result.get_errors returns null', function () {
-            expect(result.get_errors()).to.be.eql(null);
-        });
-    });
+            var result = validator.validate({"name": null});
 
-    describe('is not valid data', function () {
-        var validator = new Heimdall({
-            "name": ["required"],
-        });
-
-        var result = validator.validate({"name": null});
-
-        it('result is a object of Heimdall.Result', function () {
-            expect(result).to.be.an(Heimdall.Result);
-        });
-        it('result.has_error returnd true', function () {
-            expect(result.has_error()).to.be.ok;
-        });
-        it('result.get_errors returns array', function () {
-            expect(result.get_errors()).to.be.a('array');
-        });
-        it('result.get_error returns.', function () {
-            expect(result.get_error('name', 'required')).to.be.a('object');
+            it('result is a object of Heimdall.Result', function () {
+                expect(result).to.be.an(Heimdall.Result);
+            });
+            it('result.has_error returnd true', function () {
+                expect(result.has_error()).to.be.ok();
+            });
+            it('result.get_errors returns array', function () {
+                expect(result.get_errors()).to.be.a('array');
+            });
+            it('result.get_error returns.', function () {
+                expect(result.get_error('name', 'required')).to.be.a('object');
+            });
         });
     });
 });
@@ -109,7 +111,7 @@ describe('use $ prefix', function () {
             expect($.heimdall).to.be.a('function');
         });
     });
-    descibe('create instance', function () {
+    describe('create instance', function () {
         var validator = $.heimdal({
             "name": ["required"],
         });

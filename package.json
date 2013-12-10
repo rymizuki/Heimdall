@@ -1,5 +1,5 @@
 {
-  "name": "Heimdal",
+  "name": "Heimdall",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -14,5 +14,26 @@
     "bower": "~1.2.7",
     "grunt-contrib-testem": "~0.5.11",
     "phantomjs": "~1.9.2-2"
-  }
+  },
+  "title": "Heimdall",
+  "homepage": "https://github.com/mizuki/Heimdall",
+  "author": {
+    "name": "mizuki_r",
+    "email": "ry.mizuki@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mizuki/Heimdall.git"
+  },
+  "bugs": "https://github.com/mizuki/Heimdall/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/mizuki/Heimdall/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": []
 }

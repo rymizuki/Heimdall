@@ -6,10 +6,18 @@ module.exports = (grunt) ->
 
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
+    banner:'/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
+      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
+      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n'
 
     concat:
       main:
         dest: "dist/heimdall.js"
+        options:
+          banner: "<%= banner %>"
+          stripBanners: true
         src: [
           "js/heimdall.js"
           "js/heimdall-result.js"
@@ -23,12 +31,18 @@ module.exports = (grunt) ->
         ]
 
     jshint:
-      options:
-        jshintrc: '.jshintrc'
-      files:
-        src: "<%= concat.main.dest %>"
+      src:
+        options:
+          jshintrc: 'js/.jshintrc'
+        src: ['js/**/*.js']
+      test:
+        options:
+          jshintrc: 'test/.jshintrc'
+        src: ['test/**/*.js']
 
     uglify:
+      options:
+        banner: '<%= banner %>'
       main:
         files:
           "dist/heimdall.min.js": [ "<%= concat.main.dest %>" ]
@@ -44,7 +58,10 @@ module.exports = (grunt) ->
           "bower_components/expect/expect.js"
           "bower_components/sinon/index.js"
           "bower_components/jquery/jquery.js"
-          "<%= concat.main.dest %>"
+          "js/heimdall.js"
+          "js/heimdall-result.js"
+          "js/heimdall-shorthand.js"
+          "js/constraints/DEFAULTS.js"
           "test/constraint.js"
           "test/result.js"
           "test/validator.js"
@@ -65,5 +82,4 @@ module.exports = (grunt) ->
           "test/validator.js"
         ]
 
-  grunt.registerTask 'main', ["concat:main", "jshint", "uglify:main"]
-  grunt.registerTask 'test', ["testem"]
+  grunt.registerTask 'default', ['jshint', 'testem', 'concat:main', 'uglify:main']
