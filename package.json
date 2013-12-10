@@ -7,19 +7,6 @@
   "scripts": {
     "test": "grunt testem"
   },
-  "dependencies": {
-    "grunt-cli": "~0.1.11",
-    "grunt": "~0.4.1"
-  },
-  "devDependencies": {
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.7",
-    "grunt-contrib-jshint": "~0.7.1",
-    "matchdep": "~0.3.0",
-    "bower": "~1.2.7",
-    "grunt-contrib-testem": "~0.5.11",
-    "phantomjs": "~1.9.2-2"
-  },
   "title": "Heimdall",
   "homepage": "https://github.com/mizuki/Heimdall",
   "author": {
@@ -38,7 +25,18 @@
     }
   ],
   "dependencies": {
-    "jquery": "*"
+    "jquery": "*",
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.11"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-jshint": "~0.7.1",
+    "matchdep": "~0.3.0",
+    "bower": "~1.2.7",
+    "grunt-contrib-testem": "~0.5.11",
+    "phantomjs": "~1.9.2-2"
   },
   "keywords": []
 }
