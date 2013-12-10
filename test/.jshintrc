@@ -17,6 +17,8 @@
     "Heimdall",
     "describe",
     "it",
-    "expect"
+    "expect",
+    "before",
+    "beforeEach"
   ]
 }

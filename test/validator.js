@@ -104,6 +104,51 @@ describe('validator.validate', function () {
             });
         });
     });
+    describe('validating an input', function () {
+        describe('give the valid data', function () {
+            before(function (done) {
+                this.validator = new Heimdall({
+                    "name": ["required"],
+                    "age" : ["required"]
+                });
+                this.result = this.validator.validate('name', 'tarou');
+                done();
+            });
+
+            it('on Heimdall.Result', function () {
+                expect(this.result).to.be.an(Heimdall.Result);
+            });
+            it('has_error is false', function () {
+                expect(this.result.has_error()).to.not.be.ok();
+            });
+            it('get_errors return null', function () {
+                expect(this.result.get_errors()).to.be.eql(null);
+            });
+        });
+        describe('give the invalid data', function () {
+            before(function (done) {
+                this.validator = new Heimdall({
+                    "name": ["required"],
+                    "age" : ["required"]
+                });
+                this.result = this.validator.validate('name', null);
+                done();
+            });
+
+            it('on Heimdall.Result', function () {
+                expect(this.result).to.be.an(Heimdall.Result);
+            });
+            it('has_error is true', function () {
+                expect(this.result.has_error()).to.ok();
+            });
+            it('get_errors return array', function () {
+                expect(this.result.get_errors()).to.be.a('array');
+            });
+            it('get_errors return errors', function () {
+                expect(this.result.get_error('name', 'required')).to.be.a('object');
+            });
+        });
+    });
 });
 describe('use $ prefix', function () {
     describe('has heimdal method', function () {
@@ -112,11 +157,11 @@ describe('use $ prefix', function () {
         });
     });
     describe('create instance', function () {
-        var validator = $.heimdal({
+        var validator = $.heimdall({
             "name": ["required"],
         });
         it('of Heimdal object', function () {
-            expect(validator).to.be.an('Heimdall');
+            expect(validator).to.be.an(Heimdall);
         });
         it('has rules', function () {
             expect(validator.rules).to.be.eql({
